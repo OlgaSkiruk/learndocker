@@ -1,15 +1,24 @@
 version: '3.1'
 
-servicesOlga:
-  apache:
-    # image: httpd:2.4
+services:
+  app:
     build:
       context: ./docker
-      dockerfile: apache.dockerfile
+      dockerfile: app.dockerfile
     ports:
       - 8000:80
-    volumes:
-      - ./html:/usr/local/apache2/htdocs
+      
+# services:
+#   apache:
+#     # image: httpd:2.4
+#     build:
+#       context: ./docker
+#       dockerfile: apache.dockerfile
+#     image: olgaskiruk/learndocker:latest
+#     ports:
+#       - 8000:80
+#     # volumes:
+#     #   - ./html:/usr/local/apache2/htdocs
 
   db:
     image: mariadb
@@ -24,3 +33,5 @@ servicesOlga:
     restart: always
     ports:
       - 8080:8080
+    volumes:
+      dbdata
